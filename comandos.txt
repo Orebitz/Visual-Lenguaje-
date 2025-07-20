@@ -1,0 +1,3 @@
+set mensaje HolaMundo
+color 255 0 0
+text HolaMundo 100 100
