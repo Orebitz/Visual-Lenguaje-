@@ -1,5 +1,6 @@
 # Visual-Lenguaje-
 Se suben actualizaciones y el codigo completo de este mini proyecto
+los archivos .pde y el .txt de comandos deben estar juntos si no habra error
 Ejemplo de comando 
 
 set x 25
