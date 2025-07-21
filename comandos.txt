@@ -1,3 +1,21 @@
-set mensaje HolaMundo
+#Aqui un pequeño ejemplo que pueden ejecutar
+size 400 400
+bg 255 255 255
+
+color 0 255 0
+stroke 0 0 0
+rect 25 25 20 20
+
+#tambin hay variables :0
+set x 50
+set y 50
+set w 20 
+set h 20
+
 color 255 0 0
-text HolaMundo 100 100
+rect x y w h
+
+# formas como circle rect line hasta el momento
+color 255 5 5
+line x y 60 60
+#dentro del codigo encontraran mas cosas interesantes :D

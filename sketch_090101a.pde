@@ -1,10 +1,29 @@
 //code es donde se cargar el codigo que este en el archivo comandos.txt
 String [] code;
+int pixelaW = 600;
+int pixelaH = 400;
 //el hashMap es el que controla una buena parte del sistema de variables
 HashMap<String, Float> variables = new HashMap<String, Float>();
 //inicio
+
+void settings(){
+  String[] codeU = loadStrings("comandos.txt");
+  for(String lineaU : codeU){
+    if(lineaU.trim().startsWith("size")){
+      String[] partesU = split(lineaU, " ");
+      if(partesU.length == 3){
+      pixelaW = int(partesU[1]);
+      pixelaH = int(partesU[2]);
+      }
+      break;
+    }
+  }
+  size(pixelaW, pixelaH);
+}
+
+
 void setup(){
-  size(500,500);
+// el size se define en el archivo comandos.txt es lo mas importante
   background(255);
   //carga comandos.txt en code
   code = loadStrings("comandos.txt");
@@ -21,7 +40,7 @@ void interprete(String linea){
   if(linea.length() == 0 || linea.startsWith("#")) return;
   //separa con espacio los comando de los argumentos (argumento = partes)
   String[] partes = splitTokens(linea, " ");
-  String comando = partes[0].toLowerCase();
+  String comando = partes[0];
   //inicio de estructura condicional que verifica el comando con sus argumentos cada comando requiera mas o menos argumentos
    //comando set es para esablecer una variable sin indentificacion o neutra puede ser boolean int string ect solo se pone set (nombre) valor
     if(comando.equals("set")){
@@ -64,6 +83,26 @@ void interprete(String linea){
     float y = parseValor(partes[3]);
     
     text(variables.containsKey(contenido) ? str(variables.get(contenido)) : contenido, x, y);
+  } else if(comando.equals("bg")){
+    float r = parseValor(partes[1]);
+    float g = parseValor(partes[2]);
+    float b = parseValor(partes[3]);
+    background(r, g, b);
+  
+  } else if(comando.equals("stroke")){
+    float r = parseValor(partes[1]);
+    float g = parseValor(partes[2]);
+    float b = parseValor(partes[3]);
+    stroke(r, g, b);
+    
+  } else if(comando.equals("noStroke")){
+    noStroke();
+  } else if(comando.equals("line")){
+    float x1 = parseValor(partes[1]);
+    float y1 = parseValor(partes[2]);
+    float x2 = parseValor(partes[3]);
+    float y2 = parseValor(partes[4]);
+    line(x1, y1, x2, y2);
   }else{
     println("Pendejo no sabe ni hacer su propio codigo " + comando);
   }
